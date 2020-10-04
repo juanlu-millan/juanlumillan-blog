@@ -5,9 +5,9 @@ baseurl:     ""
 url:         "https://juanlu-millan.netlify.app"
 date_format: "%b %-d, %Y"
 header_pages:
+ - _includes/header.html
  - about.md
  - contact.html
- - _includes/header.html
 
 google_analytics:
 
