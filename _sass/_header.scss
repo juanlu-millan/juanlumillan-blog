@@ -12,12 +12,19 @@
   margin: 0 0.2em;
 }
 
-.site-header a,
-.share-links a {
+.site-header a {
   color: $header-color;
   font-size: $h3;
   font-weight: $header-font-weight;
   background-color: black;
+}
+
+.social-icons a,
+.share-links a {
+  color: $header-color;
+  font-size: $h3;
+  font-weight: $header-font-weight;
+  background-color: white;
 }
 
 .site-header .site-title {
