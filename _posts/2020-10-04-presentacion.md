@@ -10,3 +10,4 @@ Mi nombre es Juan Luis Millán Hidalgo y este es mi blog personal, Actualmente e
 
 
 ![Logo](/juanlumillan-blog/_images/jmlh.png)
+![Logo2](https://github.com/juanlu-millan/juanlumillan-blog/blob/master/_images/jmlh.png?raw=true)
