@@ -1,0 +1,12 @@
+digraph packages {
+concentrate=true;
+size="30,40";
+"ascii" [shape=box];
+"ascii" -> "libc6";
+"libc6" [shape=box];
+"libc6" -> "libgcc1";
+"libgcc1" [shape=box];
+"libgcc1" -> "gcc-8-base";
+"libgcc1" -> "libc6";
+"gcc-8-base" [shape=box];
+}
