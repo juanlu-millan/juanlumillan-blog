@@ -8,6 +8,4 @@ categories: jekyll mixyll
 
 Mi nombre es Juan Luis Millán Hidalgo y este es mi blog personal, Actualmente estudio Administración de sistemas operativos en red en el IES Gonzalo Nazareno en Dos Hermanas(Sevilla).
 
-
-![Logo](/juanlumillan-blog/_images/jmlh.png)
 ![Logo2](https://github.com/juanlu-millan/juanlumillan-blog/blob/master/_images/jmlh.png?raw=true)
