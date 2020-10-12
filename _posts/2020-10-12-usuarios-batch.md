@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Creación batch de cuentas de usuario
-date:       2020-10-12 22:21:29
+date:       2020-10-12 10:21:29
 summary:    Crear cusuarios por lotes en Debian 10.
 categories: debian10 usuarios
 ---
