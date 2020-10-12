@@ -12,31 +12,31 @@ categories: debian10 usuarios
 
 - Para crear este fichero tenemos que fijarnos en la estructura de nuestro passwd y con el comando for crearemos varios usuarios, lo añadimos a un fichero llamado alumnosnew para después sacar la información de dicho fichero.
 
-<em>
+<pre>
  for i in {1..4};do \`echo alumno$i:x:121$i:121$i:alumno$i:/home/alumno$i:/bin/bash >> alumnosnew\`;done
-</em>
+</pre>
 
 ##### Crear contraseñas con pwgen
 
 - Una vez creado los usuarios vamos a crear las contraseñas con pwgen, creamos un for para introducir las contraseñas.
 
-<em>
+<pre>
  for i in {1..4};do echo alumno$i:\`pwgen\` >> contraseñanew ;done
-</em>
+</pre>
 
 #####  Agregar usuarios con newusers
 
 - Ejecutamos el comando newusers (lee un fichero y utiliza la información para crear usuarios por lotes) con el fichero alumnosnew que hemos creado anteriormente.
 
-<em>
+<pre>
  newusers < usuariosnew
-</em>
+</pre>
 #####  Agregar contraseña a los usuarios creados
 
 - Ahora solo nos queda agregar las contraseñas con chpasswd a los usuarios correspondientes.
 
-<em>
+<pre>
   chpasswd < contraseñasnew
-</em>
+</pre>
 
 
