@@ -6,7 +6,7 @@ summary:    Crear cusuarios por lotes en Debian 10.
 categories: debian10 usuarios
 ---
 
-"En este post veremos de manera sencilla y rápida como crear cusuarios por lotes en Debian 10 en introducirlos en nuestro fichero de /etc/passwd."
+En este post veremos de manera sencilla y rápida como crear cusuarios por lotes en Debian 10 en introducirlos en nuestro fichero de /etc/passwd.
 
 ##### Crear ficheros de usuarios
 
