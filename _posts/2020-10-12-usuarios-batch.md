@@ -31,6 +31,7 @@ En este post veremos de manera sencilla y rápida como crear cusuarios por lotes
 <pre>
  newusers < usuariosnew
 </pre>
+
 #####  Agregar contraseña a los usuarios creados
 
 - Ahora solo nos queda agregar las contraseñas con chpasswd a los usuarios correspondientes.
@@ -38,5 +39,4 @@ En este post veremos de manera sencilla y rápida como crear cusuarios por lotes
 <pre>
   chpasswd < contraseñasnew
 </pre>
-
 

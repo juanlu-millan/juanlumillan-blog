@@ -11,7 +11,7 @@ do
  echo "Introduce los cambios realizados(commit):"; read input
 done
 
-git commit -am "$input"
+git commit -am '$input'
 git push
 
 exit
