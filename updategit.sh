@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Bienvenido al actualizador de repositorios de Juan Luis Millán."
+echo "Bienvenido al actualizador de git de Juan Luis Millán."
 echo "Introduce los cambios realizados(commit):"; read input
 
 git add *
