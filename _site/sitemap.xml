@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://juanlu-millan.netlify.app/presentacion</loc>
+<lastmod>2020-10-04T13:21:29+02:00</lastmod>
+</url>
+<url>
+<loc>https://juanlu-millan.netlify.app/rclone</loc>
+<lastmod>2020-10-04T13:21:29+02:00</lastmod>
+</url>
+<url>
+<loc>https://juanlu-millan.netlify.app/usuarios-batch</loc>
+<lastmod>2020-10-12T12:20:00+02:00</lastmod>
+</url>
+<url>
+<loc>https://juanlu-millan.netlify.app/Trello</loc>
+<lastmod>2020-10-15T11:21:29+02:00</lastmod>
+</url>
+<url>
+<loc>https://juanlu-millan.netlify.app/about/</loc>
+</url>
+<url>
+<loc>https://juanlu-millan.netlify.app/contact/</loc>
+</url>
+<url>
+<loc>https://juanlu-millan.netlify.app/</loc>
+</url>
+<url>
+<loc>https://juanlu-millan.netlify.app/thanks/</loc>
+</url>
+</urlset>

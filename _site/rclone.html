@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Utilizando Rclone &#8211; Juan Luis Millán</title>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Funcionamiento básico de la herramienta de sincronización entre proveedores cloud.">
+    <meta name="robots" content="all">
+    <meta name="author" content="">
+    <meta name="keywords" content="debian10, rclone">
+    <link rel="canonical" href="https://juanlu-millan.netlify.app/rclone">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Juan Luis Millán" href="/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css?202010151659" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/v4-shims.min.css    ">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Utilizando Rclone">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="https://juanlu-millan.netlify.app/rclone">
+    <meta property="og:site_name" content="Juan Luis Millán">
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+        <meta name="twitter:site" content="@Juan Luis Millán" />
+        <meta name="twitter:creator" content="@Juan Luis Millán" />
+    
+    <meta name="twitter:title" content="Utilizando Rclone" />
+    <meta name="twitter:description" content="Funcionamiento básico de la herramienta de sincronización entre proveedores cloud." />
+    <meta name="twitter:url" content="https://juanlu-millan.netlify.app/rclone" />
+    
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    
+</head>
+
+<body class="site animated fade-in-down">
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/" class="site-title">Juan Luis Millán</a>
+      <nav class="site-nav">
+        
+
+
+
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="/about/">Sobre Mi</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="/contact/">Consultas</a>
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Utilizando Rclone</h1>
+  <span class="post-meta">Oct 4, 2020 |</span>
+  
+  <span class="post-meta small">
+  
+    3 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <h3 id="instala-rclone-en-tu-equipo">Instala rclone en tu equipo.</h3>
+<p>sudo apt-get install rclone</p>
+
+<h3 id="configura-dos-proveedores-cloud-en-rclone-dropbox-google-drive-mega-">Configura dos proveedores cloud en rclone (dropbox, google drive, mega, …)</h3>
+<p>En mi situación utilizaremos Drive y Dropbox,entramos en la configuración con el comando sudo rclone config donde nos aparecerá esta información</p>
+
+<pre>
+juanlu@millan:~$ sudo rclone config
+2020/09/29 12:05:53 NOTICE: Config file "/root/.config/rclone/rclone.conf" not found - using defaults
+No remotes found - make a new one
+n) New remote
+s) Set configuration password
+q) Quit config
+n/s/q&gt;
+</pre>
+
+<ul>
+  <li>
+    <p>Elegimos la opción N (new) ya que no tenemos ninguna creada.</p>
+  </li>
+  <li>
+    <p>En el name ya que utilizare dropbox de primera asignaremos ese nombre</p>
+  </li>
+  <li>
+    <p>En el siguiente paso nos muestra la lista de almacenamientos en la nube donde elegiremos Dropbox que en mi caso es el número 8</p>
+  </li>
+  <li>
+    <p>Una vez elegido el cliente nos dice si queremos registrar la ID del cliente y el cliente secreto, lo dejamos en blanco.</p>
+  </li>
+  <li>
+    <p>Ahora en configuración avanzada aceptamos y nos avisa de que algunos fichero de mucho tamaño se dividirán en trozos más pequeños, por defecto nos dice que asignemos 48 Megas así que le asignamos ese tamaño.</p>
+  </li>
+  <li>
+    <p>El ultimo apartado es donde se realiza la configuración remota para conectar rclone con nuestro Dropbox, autorizamos desde nuestro navegador para que se conecte y ya tendríamos conectado nuestro Dropbox.</p>
+  </li>
+  <li>
+    <p>La configuración de Drive en muy similar pero hay más opciones a la hora de elegir cuanto poder tiene rclone sobre el contenido de nuestra Drive, suelo utilizar lo que viene por defecto y autorizamos igual que Dropbox.</p>
+  </li>
+</ul>
+
+<h3 id="muestra-distintos-comandos-de-rclone-para-gestionar-los-ficheros-de-los-proveedores-cloud-lista-los-ficheros-copia-un-fichero-local-a-la-nube-sincroniza-un-directorio-local-con-un-directorio-en-la-nube-copia-ficheros-entre-los-dos-proveedores-cloud-muestra-alguna-funcionalidad-más">Muestra distintos comandos de rclone para gestionar los ficheros de los proveedores cloud: lista los ficheros, copia un fichero local a la nube, sincroniza un directorio local con un directorio en la nube, copia ficheros entre los dos proveedores cloud, muestra alguna funcionalidad más,…</h3>
+
+<ul>
+  <li>Lista los ficheros</li>
+</ul>
+
+<pre>
+rclone ls drive:
+  1643750 ASIR.zip
+  1689958 IMG-9397.jpg
+   133910 semana.xps
+</pre>
+
+<ul>
+  <li>Copia un fichero local a la nube</li>
+</ul>
+
+<pre>
+ rclone copy Imágenes/rio.jpg drive:
+ rclone ls drive:
+  1643750 ASIR.zip
+  1689958 IMG-9397.jpg
+   208340 rio.jpg
+   133910 semana 4.xps
+</pre>
+
+<ul>
+  <li>Sincroniza un directorio local con un directorio en la nube (En este caso he borrado de mi directorio local para al sincronizar se
+borrara en la nube)</li>
+</ul>
+
+<pre>
+    rclone ls drive:Imágenes
+    61138 Captura de pantalla de 2020-09-17 17-32-46.png
+    33797 Captura de pantalla de 2020-09-23 10-04-59.png
+    98520 HORARIO.png
+   374806 alena-aenami-lunar-cover.jpg
+   803783 castle-2560x1440-river-ship-4k-19760.jpg
+  3476268 palacionuevo.xcf
+   425097 paquetes.png
+   208340 rio.jpg
+   260718 rionuevo.jpeg
+rclone sync Imágenes/ drive:Imágenes/ &amp;
+[1] 30212
+rclone ls drive:Imágenes
+    98520 HORARIO.png
+   374806 alena-aenami-lunar-cover.jpg
+   803783 castle-2560x1440-river-ship-4k-19760.jpg
+   208340 rio.jpg
+   260718 rionuevo.jpeg
+[1]+  Hecho                   rclone sync Imágenes/ drive:Imágenes/
+</pre>
+
+<ul>
+  <li>Copia ficheros entre los dos proveedores cloud</li>
+</ul>
+
+<pre>
+rclone copy drive:IMG-9397.jpg dropbox:IMG-9397.jpg
+rclone ls dropbox:
+      240 Get Started with Dropbox Paper.url
+  1102331 Get Started with Dropbox.pdf
+  1689958 IMG-9397.jpg/IMG-9397.jpg
+</pre>
+
+<ul>
+  <li>Muestra alguna funcionalidad más</li>
+</ul>
+
+<p>La funcionalidad move nos permite mover ficheros entre nuestra local y la nube</p>
+
+<pre>
+rclone move -P firmware-atheros_20190114-2_all.deb dropbox:
+Transferred:        3.825M / 3.825 MBytes, 100%, 1.678 MBytes/s, ETA 0s
+Errors:                 0
+Checks:                 1 / 1, 100%
+Transferred:            1 / 1, 100%
+Elapsed time:        2.2s
+rclone ls dropbox:
+      240 Get Started with Dropbox Paper.url
+  1102331 Get Started with Dropbox.pdf
+  4011116 firmware-atheros_20190114-2_all.deb
+  1689958 IMG-9397.jpg/IMG-9397.jpg
+</pre>
+
+<h3 id="monta-en-un-directorio-local-de-tu-ordenador-los-ficheros-de-un-proveedor-cloud-comprueba-que-copiando-o-borrando-ficheros-en-este-directorio-se-crean-o-eliminan-en-el-proveedor">Monta en un directorio local de tu ordenador, los ficheros de un proveedor cloud. Comprueba que copiando o borrando ficheros en este directorio se crean o eliminan en el proveedor.</h3>
+
+<ul>
+  <li>Crearemos el directorio donde vamos a montar el directorio de nuestro proveedor cloud</li>
+</ul>
+
+<pre>
+mkdir dropbox
+</pre>
+
+<ul>
+  <li>Con la opción mount podemos montar en un directorio que hemos creado.</li>
+</ul>
+
+<pre>
+rclone mount dropbox: dropbox &amp;
+</pre>
+
+<ul>
+  <li>Una vez termine el proceso comprobamos que están nuestros archivos, borramos uno los archivos en local y efectivamente se borra en la nube.</li>
+</ul>
+
+<pre>
+ls
+ firmware-atheros_20190114-2_all.deb  'Get Started with Dropbox.pdf'
+'Get Started with Dropbox Paper.url'   IMG-9397.jpg
+
+rm firmware-atheros_20190114-2_all.deb
+rclone ls dropbox:
+      240 Get Started with Dropbox Paper.url
+  1102331 Get Started with Dropbox.pdf
+  1689958 IMG-9397.jpg/IMG-9397.jpg
+</pre>
+
+<p>En caso de necesitar algún que otro comando para realizar otra tarea consulte en <a href="https://rclone.org/commands/">https://rclone.org/commands/</a></p>
+
+</article>
+
+
+  <div class="share-page">
+  <div class="share-links">
+    Share:
+
+    
+      <a class="fa fa-facebook" href="https://facebook.com/sharer.php?u=https%3A%2F%2Fjuanlu-millan.netlify.app%2Frclone" rel="nofollow" target="_blank" title="Share on Facebook"></a>
+    
+
+    
+      <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?text=Utilizando+Rclone&amp;url=https%3A%2F%2Fjuanlu-millan.netlify.app%2Frclone" rel="nofollow" target="_blank" title="Share on Twitter"></a>
+    
+
+    
+      <a class="fa fa-google-plus" href="https://plus.google.com/share?url=https%3A%2F%2Fjuanlu-millan.netlify.app%2Frclone" rel="nofollow" target="_blank" title="Share on Google+"></a>
+    
+
+    
+      <a class="fa fa-linkedin" href="http://www.linkedin.com/shareArticle?url=https%3A%2F%2Fjuanlu-millan.netlify.app%2Frclone&amp;title=Utilizando+Rclone" rel="nofollow" target="_blank" title="Share on LinkedIn"></a>
+    
+
+    
+      <a class="fa fa-digg" href="http://digg.com/submit?url=https%3A%2F%2Fjuanlu-millan.netlify.app%2Frclone&amp;title=Utilizando+Rclone" rel="nofollow" target="_blank" title="Share on Digg"></a>
+    
+
+    
+      <a class="fa fa-tumblr" href="http://www.tumblr.com/share/link?url=https%3A%2F%2Fjuanlu-millan.netlify.app%2Frclone&amp;name=Utilizando+Rclone" rel="nofollow" target="_blank" title="Share on Tumblr"></a>
+    
+
+    
+      <a class="fa fa-reddit" href="http://reddit.com/submit?url=https%3A%2F%2Fjuanlu-millan.netlify.app%2Frclone&amp;title=Utilizando+Rclone" rel="nofollow" target="_blank" title="Share on Reddit"></a>
+    
+
+    
+      <a class="fa fa-stumbleupon" href="http://www.stumbleupon.com/submit?url=https%3A%2F%2Fjuanlu-millan.netlify.app%2Frclone&amp;title=Utilizando+Rclone" rel="nofollow" target="_blank" title="Share on StumbleUpon"></a>
+    
+
+    
+      <a class="fa fa-hacker-news" onclick="parent.postMessage('submit','*')" href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fjuanlu-millan.netlify.app%2Frclone&amp;t=Utilizando+Rclone" rel="nofollow" target="_blank" title="Share on Hacker News"></a>
+    
+  </div>
+</div>
+
+
+
+
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  <ul class="related-posts">
+    
+    <li>
+      <a href="/Trello" class="post-link">
+          Instalar Trello en Debian
+      </a>
+    </li>
+    
+    <li>
+      <a href="/usuarios-batch" class="post-link">
+          Creación batch de cuentas de usuario
+      </a>
+    </li>
+    
+    <li>
+      <a href="/presentacion" class="post-link">
+          Presentación
+      </a>
+    </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <div class="left">
+      <small>
+        &copy; 2020 Juan Luis Millán
+      </small>
+    </div>
+    
+      <div class="social-icons right">
+  
+    <a class="fab fa-linkedin" href="https://www.linkedin.com/in/Juan Luis Millán Hidalgo" target="_blank"></a>
+    
+  
+    <a class="fab fa-github" href="https://github.com/juanlu-millan" target="_blank"></a>
+  
+  
+    <a class="fab fa-twitter" href="https://twitter.com/Juan Luis Millán" target="_blank"></a>
+  
+  
+  
+    <a class="fas fa-envelope" href="mailto:juanluismillanhidalgo@gmail.com"></a>
+  
+  <a class="fas fa-rss" href="/feed.xml" target="_blank"></a>
+</div>
+<div class="clearfix"></div>
+
+    
+  </div>
+</footer>
+<script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js")
+    }
+</script>
+
+</body>
+</html>

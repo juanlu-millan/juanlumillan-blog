@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Instalar Trello en Debian &#8211; Juan Luis Millán</title>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explicación de como se instala el programa trello en Debian.">
+    <meta name="robots" content="all">
+    <meta name="author" content="">
+    <meta name="keywords" content="Trello, Debian">
+    <link rel="canonical" href="https://juanlu-millan.netlify.app/Trello">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Juan Luis Millán" href="/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css?202010151740" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/v4-shims.min.css    ">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Instalar Trello en Debian">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="https://juanlu-millan.netlify.app/Trello">
+    <meta property="og:site_name" content="Juan Luis Millán">
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+        <meta name="twitter:site" content="@Juan Luis Millán" />
+        <meta name="twitter:creator" content="@Juan Luis Millán" />
+    
+    <meta name="twitter:title" content="Instalar Trello en Debian" />
+    <meta name="twitter:description" content="Explicación de como se instala el programa trello en Debian." />
+    <meta name="twitter:url" content="https://juanlu-millan.netlify.app/Trello" />
+    
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    
+</head>
+
+<body class="site animated fade-in-down">
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/" class="site-title">Juan Luis Millán</a>
+      <nav class="site-nav">
+        
+
+
+
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="/about/">Sobre Mi</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="/contact/">Consultas</a>
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Instalar Trello en Debian</h1>
+  <span class="post-meta">Oct 15, 2020 |</span>
+  
+  <span class="post-meta small">
+  
+    1 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <h2 id="antes-que-nada-qué-es-trello">Antes que nada ¿Qué es Trello?</h2>
+
+<p>Trello es una aplicación que sirve para la gestión de proyectos y tareas que utiliza tableros dividido en columnas, de esta manera podemos organizar mejor nuestra rutina de  trabajo con una variedad de herramientas que generan prioridades, avisos, tiempo y más opciones de organización.</p>
+
+<p><img src="https://github.com/juanlu-millan/juanlumillan-blog/blog/master/_images/trello/trello1.pngtrello1.png" alt="trello1" /></p>
+
+<p>En este post veremos como se instala la aplicación de escritorio (no oficial) ya que no dispone actualmente, pero danielchatfield usuario de GitHub creo una desktop de Trello totalmente funcional.</p>
+
+<p>Se descarga a  en este enlace donde muestra el proyecto completo, seleccionamos la primera opción que es Trello-linux-0.1.9.</p>
+
+<p><img src="https://github.com/juanlu-millan/juanlumillan-blog/blog/master/_images/trello/trello2.png" alt="trello2" /></p>
+
+<p>Una vez descargado debes realizar los siguientes pasos:</p>
+
+<h3 id="paso-1">Paso 1:</h3>
+
+<p>Descomprimir Trello-linux-0.1.9.zip en la carpeta que quieras.</p>
+
+<p>Ejemplo: unzip Trello-linux-0.1.9.zip -d carpeta_trello/</p>
+
+<h3 id="paso-2">Paso 2:</h3>
+
+<p>Ahora creamos un archivo  “~/.local/share/applications” llamada trello.desktop para crear el ejecutable con el siguiente contenido:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Desktop Entry]
+Name=Trello
+Exec=/home/usuario/carpeta_trello/Trello
+Terminal=false
+Type=Application
+Icon=/home/usuario/carpeta_trello/resources/app/static/Icon.png
+</code></pre></div></div>
+
+<p>Tanto en en el apartado Exec como en el apartado Icon debemos poner la ruta completa.</p>
+
+<h3 id="paso-3">Paso 3:</h3>
+
+<p>Una vez esta todo terminado podemos buscarla para ver si se ha realizado correctamente los 2 primeros pasos y ya puedes disfrutar de esta fantástica aplicación.</p>
+
+<p><img src="https://github.com/juanlu-millan/juanlumillan-blog/blog/master/_images/trello/trello3.png" alt="trello3" /></p>
+
+<p>Gracias por leer este artículo. Un saludo</p>
+
+</article>
+
+
+  <div class="share-page">
+  <div class="share-links">
+    Share:
+
+    
+      <a class="fa fa-facebook" href="https://facebook.com/sharer.php?u=https%3A%2F%2Fjuanlu-millan.netlify.app%2FTrello" rel="nofollow" target="_blank" title="Share on Facebook"></a>
+    
+
+    
+      <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?text=Instalar+Trello+en+Debian&amp;url=https%3A%2F%2Fjuanlu-millan.netlify.app%2FTrello" rel="nofollow" target="_blank" title="Share on Twitter"></a>
+    
+
+    
+      <a class="fa fa-google-plus" href="https://plus.google.com/share?url=https%3A%2F%2Fjuanlu-millan.netlify.app%2FTrello" rel="nofollow" target="_blank" title="Share on Google+"></a>
+    
+
+    
+      <a class="fa fa-linkedin" href="http://www.linkedin.com/shareArticle?url=https%3A%2F%2Fjuanlu-millan.netlify.app%2FTrello&amp;title=Instalar+Trello+en+Debian" rel="nofollow" target="_blank" title="Share on LinkedIn"></a>
+    
+
+    
+      <a class="fa fa-digg" href="http://digg.com/submit?url=https%3A%2F%2Fjuanlu-millan.netlify.app%2FTrello&amp;title=Instalar+Trello+en+Debian" rel="nofollow" target="_blank" title="Share on Digg"></a>
+    
+
+    
+      <a class="fa fa-tumblr" href="http://www.tumblr.com/share/link?url=https%3A%2F%2Fjuanlu-millan.netlify.app%2FTrello&amp;name=Instalar+Trello+en+Debian" rel="nofollow" target="_blank" title="Share on Tumblr"></a>
+    
+
+    
+      <a class="fa fa-reddit" href="http://reddit.com/submit?url=https%3A%2F%2Fjuanlu-millan.netlify.app%2FTrello&amp;title=Instalar+Trello+en+Debian" rel="nofollow" target="_blank" title="Share on Reddit"></a>
+    
+
+    
+      <a class="fa fa-stumbleupon" href="http://www.stumbleupon.com/submit?url=https%3A%2F%2Fjuanlu-millan.netlify.app%2FTrello&amp;title=Instalar+Trello+en+Debian" rel="nofollow" target="_blank" title="Share on StumbleUpon"></a>
+    
+
+    
+      <a class="fa fa-hacker-news" onclick="parent.postMessage('submit','*')" href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fjuanlu-millan.netlify.app%2FTrello&amp;t=Instalar+Trello+en+Debian" rel="nofollow" target="_blank" title="Share on Hacker News"></a>
+    
+  </div>
+</div>
+
+
+
+
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  <ul class="related-posts">
+    
+    <li>
+      <a href="/usuarios-batch" class="post-link">
+          Creación batch de cuentas de usuario
+      </a>
+    </li>
+    
+    <li>
+      <a href="/rclone" class="post-link">
+          Utilizando Rclone
+      </a>
+    </li>
+    
+    <li>
+      <a href="/presentacion" class="post-link">
+          Presentación
+      </a>
+    </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <div class="left">
+      <small>
+        &copy; 2020 Juan Luis Millán
+      </small>
+    </div>
+    
+      <div class="social-icons right">
+  
+    <a class="fab fa-linkedin" href="https://www.linkedin.com/in/Juan Luis Millán Hidalgo" target="_blank"></a>
+    
+  
+    <a class="fab fa-github" href="https://github.com/juanlu-millan" target="_blank"></a>
+  
+  
+    <a class="fab fa-twitter" href="https://twitter.com/Juan Luis Millán" target="_blank"></a>
+  
+  
+  
+    <a class="fas fa-envelope" href="mailto:juanluismillanhidalgo@gmail.com"></a>
+  
+  <a class="fas fa-rss" href="/feed.xml" target="_blank"></a>
+</div>
+<div class="clearfix"></div>
+
+    
+  </div>
+</footer>
+<script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js")
+    }
+</script>
+
+</body>
+</html>

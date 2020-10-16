@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title></title>
+    <link>https://juanlu-millan.netlify.app</link>
+    <description>
+      
+    </description>
+    
+        
+            <item>
+                <title>Instalar Trello en Debian</title>
+                <link>https://juanlu-millan.netlify.app/Trello</link>
+                <content:encoded>
+                    <![CDATA[
+                    <h2 id="antes-que-nada-qué-es-trello">Antes que nada ¿Qué es Trello?</h2>
+
+<p>Trello es una aplicación que sirve para la gestión de proyectos y tareas que utiliza tableros dividido en columnas, de esta manera podemos organizar mejor nuestra rutina de  trabajo con una variedad de herramientas que generan prioridades, avisos, tiempo y más opciones de organización.</p>
+
+<p><img src="https://github.com/juanlu-millan/juanlumillan-blog/blob/master/_images/trello/trello1.pngtrello1.png" alt="trello1" /></p>
+
+<p>En este post veremos como se instala la aplicación de escritorio (no oficial) ya que no dispone actualmente, pero danielchatfield usuario de GitHub creo una desktop de Trello totalmente funcional.</p>
+
+<p>Se descarga a  en este enlace donde muestra el proyecto completo, seleccionamos la primera opción que es Trello-linux-0.1.9.</p>
+
+<p><img src="https://github.com/juanlu-millan/juanlumillan-blog/blob/master/_images/trello/trello2.png" alt="trello2" /></p>
+
+<p>Una vez descargado debes realizar los siguientes pasos:</p>
+
+<h3 id="paso-1">Paso 1:</h3>
+
+<p>Descomprimir Trello-linux-0.1.9.zip en la carpeta que quieras.</p>
+
+<p>Ejemplo: unzip Trello-linux-0.1.9.zip -d carpeta_trello/</p>
+
+<h3 id="paso-2">Paso 2:</h3>
+
+<p>Ahora creamos un archivo  “~/.local/share/applications” llamada trello.desktop para crear el ejecutable con el siguiente contenido:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Desktop Entry]
+Name=Trello
+Exec=/home/usuario/carpeta_trello/Trello
+Terminal=false
+Type=Application
+Icon=/home/usuario/carpeta_trello/resources/app/static/Icon.png
+</code></pre></div></div>
+
+<p>Tanto en en el apartado Exec como en el apartado Icon debemos poner la ruta completa.</p>
+
+<h3 id="paso-3">Paso 3:</h3>
+
+<p>Una vez esta todo terminado podemos buscarla para ver si se ha realizado correctamente los 2 primeros pasos y ya puedes disfrutar de esta fantástica aplicación.</p>
+
+<p><img src="https://github.com/juanlu-millan/juanlumillan-blog/blob/master/_images/trello/trello3.png" alt="trello3" /></p>
+
+<p>Gracias por leer este artículo. Un saludo</p>
+
+                    ]]>
+                </content:encoded>
+                <guid isPermaLink="false">/Trello</guid>
+                <description>
+                    
+                    Explicación de como se instala el programa trello en Debian.
+                    
+                </description>
+                <pubDate>Thu, 15 Oct 2020 11:21:29 +0200</pubDate>
+                <author></author>
+            </item>
+        
+    
+        
+            <item>
+                <title>Creación batch de cuentas de usuario</title>
+                <link>https://juanlu-millan.netlify.app/usuarios-batch</link>
+                <content:encoded>
+                    <![CDATA[
+                    <p>En este post veremos de manera sencilla y rápida como crear cusuarios por lotes en Debian 10 en introducirlos en nuestro fichero de /etc/passwd.</p>
+
+<h5 id="crear-ficheros-de-usuarios">Crear ficheros de usuarios</h5>
+
+<ul>
+  <li>Para crear este fichero tenemos que fijarnos en la estructura de nuestro passwd y con el comando for crearemos varios usuarios, lo añadimos a un fichero llamado alumnosnew para después sacar la información de dicho fichero.</li>
+</ul>
+
+<pre>
+ for i in {1..4};do \`echo alumno$i:x:121$i:121$i:alumno$i:/home/alumno$i:/bin/bash &gt;&gt; alumnosnew\`;done
+</pre>
+
+<h5 id="crear-contraseñas-con-pwgen">Crear contraseñas con pwgen</h5>
+
+<ul>
+  <li>Una vez creado los usuarios vamos a crear las contraseñas con pwgen, creamos un for para introducir las contraseñas.</li>
+</ul>
+
+<pre>
+ for i in {1..4};do echo alumno$i:\`pwgen\` &gt;&gt; contraseñanew ;done
+</pre>
+
+<h5 id="agregar-usuarios-con-newusers">Agregar usuarios con newusers</h5>
+
+<ul>
+  <li>Ejecutamos el comando newusers (lee un fichero y utiliza la información para crear usuarios por lotes) con el fichero alumnosnew que hemos creado anteriormente.</li>
+</ul>
+
+<pre>
+ newusers &lt; usuariosnew
+</pre>
+
+<h5 id="agregar-contraseña-a-los-usuarios-creados">Agregar contraseña a los usuarios creados</h5>
+
+<ul>
+  <li>Ahora solo nos queda agregar las contraseñas con chpasswd a los usuarios correspondientes.</li>
+</ul>
+
+<pre>
+  chpasswd &lt; contraseñasnew
+</pre>
+
+
+                    ]]>
+                </content:encoded>
+                <guid isPermaLink="false">/usuarios-batch</guid>
+                <description>
+                    
+                    Crear cusuarios por lotes en Debian 10.
+                    
+                </description>
+                <pubDate>Mon, 12 Oct 2020 12:20:00 +0200</pubDate>
+                <author></author>
+            </item>
+        
+    
+        
+            <item>
+                <title>Utilizando Rclone</title>
+                <link>https://juanlu-millan.netlify.app/rclone</link>
+                <content:encoded>
+                    <![CDATA[
+                    <h3 id="instala-rclone-en-tu-equipo">Instala rclone en tu equipo.</h3>
+<p>sudo apt-get install rclone</p>
+
+<h3 id="configura-dos-proveedores-cloud-en-rclone-dropbox-google-drive-mega-">Configura dos proveedores cloud en rclone (dropbox, google drive, mega, …)</h3>
+<p>En mi situación utilizaremos Drive y Dropbox,entramos en la configuración con el comando sudo rclone config donde nos aparecerá esta información</p>
+
+<pre>
+juanlu@millan:~$ sudo rclone config
+2020/09/29 12:05:53 NOTICE: Config file "/root/.config/rclone/rclone.conf" not found - using defaults
+No remotes found - make a new one
+n) New remote
+s) Set configuration password
+q) Quit config
+n/s/q&gt;
+</pre>
+
+<ul>
+  <li>
+    <p>Elegimos la opción N (new) ya que no tenemos ninguna creada.</p>
+  </li>
+  <li>
+    <p>En el name ya que utilizare dropbox de primera asignaremos ese nombre</p>
+  </li>
+  <li>
+    <p>En el siguiente paso nos muestra la lista de almacenamientos en la nube donde elegiremos Dropbox que en mi caso es el número 8</p>
+  </li>
+  <li>
+    <p>Una vez elegido el cliente nos dice si queremos registrar la ID del cliente y el cliente secreto, lo dejamos en blanco.</p>
+  </li>
+  <li>
+    <p>Ahora en configuración avanzada aceptamos y nos avisa de que algunos fichero de mucho tamaño se dividirán en trozos más pequeños, por defecto nos dice que asignemos 48 Megas así que le asignamos ese tamaño.</p>
+  </li>
+  <li>
+    <p>El ultimo apartado es donde se realiza la configuración remota para conectar rclone con nuestro Dropbox, autorizamos desde nuestro navegador para que se conecte y ya tendríamos conectado nuestro Dropbox.</p>
+  </li>
+  <li>
+    <p>La configuración de Drive en muy similar pero hay más opciones a la hora de elegir cuanto poder tiene rclone sobre el contenido de nuestra Drive, suelo utilizar lo que viene por defecto y autorizamos igual que Dropbox.</p>
+  </li>
+</ul>
+
+<h3 id="muestra-distintos-comandos-de-rclone-para-gestionar-los-ficheros-de-los-proveedores-cloud-lista-los-ficheros-copia-un-fichero-local-a-la-nube-sincroniza-un-directorio-local-con-un-directorio-en-la-nube-copia-ficheros-entre-los-dos-proveedores-cloud-muestra-alguna-funcionalidad-más">Muestra distintos comandos de rclone para gestionar los ficheros de los proveedores cloud: lista los ficheros, copia un fichero local a la nube, sincroniza un directorio local con un directorio en la nube, copia ficheros entre los dos proveedores cloud, muestra alguna funcionalidad más,…</h3>
+
+<ul>
+  <li>Lista los ficheros</li>
+</ul>
+
+<pre>
+rclone ls drive:
+  1643750 ASIR.zip
+  1689958 IMG-9397.jpg
+   133910 semana.xps
+</pre>
+
+<ul>
+  <li>Copia un fichero local a la nube</li>
+</ul>
+
+<pre>
+ rclone copy Imágenes/rio.jpg drive:
+ rclone ls drive:
+  1643750 ASIR.zip
+  1689958 IMG-9397.jpg
+   208340 rio.jpg
+   133910 semana 4.xps
+</pre>
+
+<ul>
+  <li>Sincroniza un directorio local con un directorio en la nube (En este caso he borrado de mi directorio local para al sincronizar se
+borrara en la nube)</li>
+</ul>
+
+<pre>
+    rclone ls drive:Imágenes
+    61138 Captura de pantalla de 2020-09-17 17-32-46.png
+    33797 Captura de pantalla de 2020-09-23 10-04-59.png
+    98520 HORARIO.png
+   374806 alena-aenami-lunar-cover.jpg
+   803783 castle-2560x1440-river-ship-4k-19760.jpg
+  3476268 palacionuevo.xcf
+   425097 paquetes.png
+   208340 rio.jpg
+   260718 rionuevo.jpeg
+rclone sync Imágenes/ drive:Imágenes/ &amp;
+[1] 30212
+rclone ls drive:Imágenes
+    98520 HORARIO.png
+   374806 alena-aenami-lunar-cover.jpg
+   803783 castle-2560x1440-river-ship-4k-19760.jpg
+   208340 rio.jpg
+   260718 rionuevo.jpeg
+[1]+  Hecho                   rclone sync Imágenes/ drive:Imágenes/
+</pre>
+
+<ul>
+  <li>Copia ficheros entre los dos proveedores cloud</li>
+</ul>
+
+<pre>
+rclone copy drive:IMG-9397.jpg dropbox:IMG-9397.jpg
+rclone ls dropbox:
+      240 Get Started with Dropbox Paper.url
+  1102331 Get Started with Dropbox.pdf
+  1689958 IMG-9397.jpg/IMG-9397.jpg
+</pre>
+
+<ul>
+  <li>Muestra alguna funcionalidad más</li>
+</ul>
+
+<p>La funcionalidad move nos permite mover ficheros entre nuestra local y la nube</p>
+
+<pre>
+rclone move -P firmware-atheros_20190114-2_all.deb dropbox:
+Transferred:        3.825M / 3.825 MBytes, 100%, 1.678 MBytes/s, ETA 0s
+Errors:                 0
+Checks:                 1 / 1, 100%
+Transferred:            1 / 1, 100%
+Elapsed time:        2.2s
+rclone ls dropbox:
+      240 Get Started with Dropbox Paper.url
+  1102331 Get Started with Dropbox.pdf
+  4011116 firmware-atheros_20190114-2_all.deb
+  1689958 IMG-9397.jpg/IMG-9397.jpg
+</pre>
+
+<h3 id="monta-en-un-directorio-local-de-tu-ordenador-los-ficheros-de-un-proveedor-cloud-comprueba-que-copiando-o-borrando-ficheros-en-este-directorio-se-crean-o-eliminan-en-el-proveedor">Monta en un directorio local de tu ordenador, los ficheros de un proveedor cloud. Comprueba que copiando o borrando ficheros en este directorio se crean o eliminan en el proveedor.</h3>
+
+<ul>
+  <li>Crearemos el directorio donde vamos a montar el directorio de nuestro proveedor cloud</li>
+</ul>
+
+<pre>
+mkdir dropbox
+</pre>
+
+<ul>
+  <li>Con la opción mount podemos montar en un directorio que hemos creado.</li>
+</ul>
+
+<pre>
+rclone mount dropbox: dropbox &amp;
+</pre>
+
+<ul>
+  <li>Una vez termine el proceso comprobamos que están nuestros archivos, borramos uno los archivos en local y efectivamente se borra en la nube.</li>
+</ul>
+
+<pre>
+ls
+ firmware-atheros_20190114-2_all.deb  'Get Started with Dropbox.pdf'
+'Get Started with Dropbox Paper.url'   IMG-9397.jpg
+
+rm firmware-atheros_20190114-2_all.deb
+rclone ls dropbox:
+      240 Get Started with Dropbox Paper.url
+  1102331 Get Started with Dropbox.pdf
+  1689958 IMG-9397.jpg/IMG-9397.jpg
+</pre>
+
+<p>En caso de necesitar algún que otro comando para realizar otra tarea consulte en <a href="https://rclone.org/commands/">https://rclone.org/commands/</a></p>
+
+                    ]]>
+                </content:encoded>
+                <guid isPermaLink="false">/rclone</guid>
+                <description>
+                    
+                    Funcionamiento básico de la herramienta de sincronización entre proveedores cloud.
+                    
+                </description>
+                <pubDate>Sun, 04 Oct 2020 13:21:29 +0200</pubDate>
+                <author></author>
+            </item>
+        
+    
+        
+            <item>
+                <title>Presentación</title>
+                <link>https://juanlu-millan.netlify.app/presentacion</link>
+                <content:encoded>
+                    <![CDATA[
+                    <p>Mi nombre es Juan Luis Millán Hidalgo y este es mi blog personal, Actualmente estudio Administración de sistemas operativos en red en el IES Gonzalo Nazareno en Dos Hermanas(Sevilla).</p>
+
+<p><img src="https://github.com/juanlu-millan/juanlumillan-blog/blob/master/_images/jmlh.png?raw=true" alt="Logo2" /></p>
+
+                    ]]>
+                </content:encoded>
+                <guid isPermaLink="false">/presentacion</guid>
+                <description>
+                    
+                    Primer post de Presentación.
+                    
+                </description>
+                <pubDate>Sun, 04 Oct 2020 13:21:29 +0200</pubDate>
+                <author></author>
+            </item>
+        
+    
+  </channel>
+</rss>
